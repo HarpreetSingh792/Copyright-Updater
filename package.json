@@ -1,11 +1,12 @@
 {
   "name": "copyright-updater",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A lightweight CLI tool that automatically updates copyright years in your project files — with support for custom formats and ranges.",
   "main": "index.js",
   "type": "module",
   "exports": {
-  ".": "./index.js"
+   "import": "./index.js",
+  "require": "./index.js"
 },"bin": {
   "copyright-updater": "./bin/index.js"
 },

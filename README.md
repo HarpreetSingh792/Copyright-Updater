@@ -7,8 +7,9 @@ A lightweight and customizable utility to auto-generate or update copyright year
 ## ✨ Features
 
 - ✅ Auto-generates dynamic copyright year ranges
-- 🧠 Smart format selection (`minimal`, `ranged`, `full`, and more)
-- 🧩 Custom year range via `modified` mode
+- 🧠 Smart format selection (`minimal`, `ranged`, `full`, etc.)
+- 📆 `ranged` & `copyright-ranged` now accept **optional end year**
+- 🧩 `modified` format enforces manual range
 - ⚙️ Lightweight and dependency-free
 - 🛠️ Works in both JavaScript and Node.js environments
 
@@ -18,7 +19,7 @@ A lightweight and customizable utility to auto-generate or update copyright year
 
 ```bash
 npm install copyright-updater
-````
+```
 
 Or for testing locally with symlink:
 
@@ -30,37 +31,70 @@ npm link
 
 ## 🚀 Usage
 
-### 1. Basic Example
+### 1. Minimal Format
 
 ```js
 import cpUpdate from "copyright-updater";
 
 console.log(cpUpdate("minimal", 2020)); 
-// Output: © 2020 - 2025
+// Output: © 2020 - 2025 (or current year)
 ```
 
 ---
 
-### 2. Custom Format Example
+### 2. Ranged Format
 
 ```js
-import cpUpdate from "copyright-updater";
+console.log(cpUpdate("ranged", 2018)); 
+// Output: © 2018 - 2025
 
-console.log(cpUpdate("modified", 2018, 2030)); 
-// Output: Copyright 2018 - 2030
+console.log(cpUpdate("ranged", 2018, 2030)); 
+// Output: © 2018 - 2030
+```
+
+---
+
+### 3. Copyright-Ranged
+
+```js
+console.log(cpUpdate("copyright-ranged", 2019)); 
+// Output: Copyright 2019 - 2025
+
+console.log(cpUpdate("copyright-ranged", 2019, 2029)); 
+// Output: Copyright 2019 - 2029
+```
+
+---
+
+### 4. Modified Format (Strict)
+
+```js
+console.log(cpUpdate("modified", 2015, 2022)); 
+// Output: Copyright 2015 - 2022
+```
+
+> ⚠️ This format **requires both** `startYear` and `endYear`. If either is missing, an error is thrown.
+
+---
+
+### 5. Full Format (Default fallback)
+
+```js
+console.log(cpUpdate("full", 2025));
+// Output: Copyright 2025
 ```
 
 ---
 
 ## 🔤 Available Formats
 
-| Format             | Description                               | Example Output                    |
-| ------------------ | ----------------------------------------- | --------------------------------- |
-| `minimal`          | Uses symbol + range                       | `© 2020 - 2025`                   |
-| `ranged`           | Always shows range                        | `© 2021 - 2025`                   |
-| `copyright-ranged` | Adds "Copyright" label                    | `Copyright 2019 - 2025`           |
-| `full` *(default)* | Shows single or ranged year with label    | `Copyright 2025` or `2020 - 2025` |
-| `modified`         | Manually provide both start and end years | `Copyright 2018 - 2030`           |
+| Format             | Description                                        | Example Output                    |
+|-------------------|----------------------------------------------------|-----------------------------------|
+| `minimal`          | Symbol + smart range (`©`)                        | `© 2020 - 2025`                   |
+| `ranged`           | Accepts optional end year                         | `© 2018 - 2030` or `© 2018 - 2025`|
+| `copyright-ranged` | Same as `ranged`, but with `"Copyright"` label    | `Copyright 2018 - 2025`           |
+| `full` *(default)* | Smart single or ranged year with `"Copyright"`    | `Copyright 2025` or `2020 - 2025` |
+| `modified`         | Manual range, **requires both** start & end years | `Copyright 2018 - 2030`           |
 
 ---
 
@@ -69,18 +103,18 @@ console.log(cpUpdate("modified", 2018, 2030));
 ### `cpUpdate(format, startYear, endYear?)`
 
 | Param       | Type   | Required | Description                             |
-| ----------- | ------ | -------- | --------------------------------------- |
+|-------------|--------|----------|-----------------------------------------|
 | `format`    | string | ✅        | One of the predefined format types      |
 | `startYear` | number | ✅        | Start year of the copyright             |
-| `endYear`   | number | ❌        | Required **only** for `"modified"` mode |
+| `endYear`   | number | ❌        | Used only in `ranged`, `copyright-ranged`, and `modified` |
 
 ---
 
-## 🛑 Throws Error
+## 🛑 Error Handling
 
-If `modified` format is used **without end year**, you'll get:
+If `modified` format is used without `endYear`, you'll get:
 
-```
+```bash
 Error: Both startYear and endYear are required for 'modified' format.
 ```
 
