@@ -1,15 +1,16 @@
 {
   "name": "copyright-updater",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight CLI tool that automatically updates copyright years in your project files — with support for custom formats and ranges.",
   "main": "index.js",
   "type": "module",
   "exports": {
-   "import": "./index.js",
-  "require": "./index.js"
-},"bin": {
-  "copyright-updater": "./bin/index.js"
-},
+    "import": "./index.js",
+    "require": "./index.js"
+  },
+  "bin": {
+    "copyright-updater": "./bin/index.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,24 +19,24 @@
     "url": "git+https://github.com/HarpreetSingh792/Copyright-Updater.git"
   },
   "keywords": [
-  "cli",
-  "copyright",
-  "year",
-  "auto-update",
-  "license",
-  "npx",
-  "header",
-  "date",
-  "updater",
-  "text-replace",
-  "automation",
-  "project-maintenance",
-  "open-source",
-  "markdown",
-  "configurable",
-  "custom-format",
-  "regex",
-  "file-update"
+    "cli",
+    "copyright",
+    "year",
+    "auto-update",
+    "license",
+    "npx",
+    "header",
+    "date",
+    "updater",
+    "text-replace",
+    "automation",
+    "project-maintenance",
+    "open-source",
+    "markdown",
+    "configurable",
+    "custom-format",
+    "regex",
+    "file-update"
   ],
   "author": "Harpreet Singh",
   "license": "ISC",
